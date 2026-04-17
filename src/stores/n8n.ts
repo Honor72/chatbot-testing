@@ -8,8 +8,8 @@ export const useN8n = createGlobalState(() => {
 	const ASSISTANT_TYPING_TOKEN = "__assistant_typing__";
 	const SESSION_STORAGE_KEY = "chat_session_id";
 	const LANGUAGE_BY_SELECTION = {
-		cs: "czech-cz",
-		en: "english-en",
+		cs: "czech",
+		en: "english",
 	} as const;
 
 	const messages = ref<{ role: "user" | "assistant"; content: string }[]>([]);
@@ -113,7 +113,6 @@ export const useN8n = createGlobalState(() => {
 				session_id: sessionId,
 				sessionId,
 				language: selectedWebhookLanguage,
-				lang: selectedWebhookLanguage,
 			};
 
 			const response = await fetch(appConfig.value.hostname, {
