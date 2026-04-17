@@ -7,6 +7,10 @@ export const useN8n = createGlobalState(() => {
 	const { toast } = useToast();
 	const ASSISTANT_TYPING_TOKEN = "__assistant_typing__";
 	const SESSION_STORAGE_KEY = "chat_session_id";
+	const LANGUAGE_BY_SELECTION = {
+		cs: "czech-cz",
+		en: "english-en",
+	} as const;
 
 	const messages = ref<{ role: "user" | "assistant"; content: string }[]>([]);
 	const userInput = ref("");
@@ -102,9 +106,14 @@ export const useN8n = createGlobalState(() => {
 		isLoading.value = true;
 
 		try {
+			const selectedWebhookLanguage = LANGUAGE_BY_SELECTION[selectedLanguage.value];
+			const sessionId = ensureSessionId();
 			const body = {
 				chatInput: messageToSend,
-				sessionId: ensureSessionId(),
+				session_id: sessionId,
+				sessionId,
+				language: selectedWebhookLanguage,
+				lang: selectedWebhookLanguage,
 			};
 
 			const response = await fetch(appConfig.value.hostname, {
