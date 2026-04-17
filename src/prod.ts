@@ -71,9 +71,6 @@ const registerCustomElements = (css = "") => {
 		}
 	}
 
-	if (!customElements.get("embedded-chat-interface")) {
-		customElements.define("embedded-chat-interface", N8nEmbeddedChatInterfaceElementWithStyles);
-	}
 	if (!customElements.get("n8n-embedded-chat-interface")) {
 		customElements.define("n8n-embedded-chat-interface", N8nEmbeddedChatInterfaceElementWithStyles);
 	}
