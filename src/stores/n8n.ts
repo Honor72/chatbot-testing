@@ -111,7 +111,6 @@ export const useN8n = createGlobalState(() => {
 			const body = {
 				chatInput: messageToSend,
 				session_id: sessionId,
-				sessionId,
 				language: selectedWebhookLanguage,
 			};
 
